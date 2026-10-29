@@ -1,0 +1,19 @@
+frontier_region_min: [-5.6, -30.6, 0.0]
+frontier_region_max: [25.6, 0.6, 2.5]
+down_sample: 3
+sample_dist_min: 3.0
+sample_dist_max: 5.0
+sample_res: 1.0
+sample_height: 0.7
+posture_roll_list: [-20.0, 0.0, 20.0]
+posture_pitch_list: [-30.0, -15.0, 15.0, 30.0]
+posture_pitch_limit_deg: 30.0
+posture_roll_limit_deg: 20.0
+enable_5dof_object_vp: true
+object_vp_visit_required: true
+object_vp_retire_radius: 1.0
+object_vp_must_visit: false
+object_vp_bbox_inflate: 0.5
+enable_object_vp_candidates: true
+object_vp_verdict_ttl: 20.0
+object_vp_verdict_pos_tol: 0.8

@@ -1,0 +1,81 @@
+robot_id: 2
+use_semantic: true
+odom_topic: /spot/odom
+raw_detection_topic: /detect2d_spot
+dense_cloud_topic: /cloud_registered
+robot_size: [1.0, 0.5, 0.9]
+collision_box: [-0.5, -0.4, -0.4, 0.5, 0.4, 0.3]
+circle_decomp/centers: [-0.15, 0.0, 0.0, 0.15, 0.0, 0.0]
+circle_decomp/radius: 0.5
+circle_decomp/z_min: -0.5
+circle_decomp/z_max: 0.35
+range_sensor_type: "lidar"
+depth_image_topic: /depth_spot
+point_cloud_topic: /point_cloud_spot
+range_sensor_fov_upper: 22.5
+range_sensor_fov_lower: -22.5
+range_sensor_intrinsics: [320, 320, 320, 240.0]
+range_sensor_resolution: [640, 480]
+body_to_range_sensor: [1.0,  0.0,  0.0,  0.30,
+                        0.0,  1.0,  0.0,  0.0,
+                        0.0,  0.0,  1.0,  0.20,
+                        0.0,  0.0,  0.0,  1.0]
+color_sensor_type: "panoramic"
+color_sensor_intrinsics: [320, 320, 320, 240.0]
+pano_cam_params: [460.0, 250.0, 1440, 100.0, 1440, 6.0]
+color_sensor_resolution: [1440, 768]
+depth_scale_factor: 1000
+depth_min_value: 0.5
+depth_max_value: 6.0
+depth_filter_margin: 2
+depth_skip_pixel: 2
+body_to_color_sensor: [1.0,  0.0,  0.0,  0.30,
+                        0.0,  1.0,  0.0,  0.0 ,
+                        0.0,  0.0,  1.0,  0.30,
+                        0.0,  0.0,  0.0,  1.0]
+raycast_max_length: 8.0
+p_hit: 0.70
+p_miss: 0.35
+p_min: 0.12
+p_max: 0.97
+p_occ: 0.80
+map_resolution: 0.1
+ground_height: -0.2
+map_size_max: [25.6, 0.6, 4.0]
+map_size_min: [-5.6, -30.6, -1]
+local_update_range: [8, 8, 4]
+local_bound_inflation: 3.0
+object_map_duration: 0.1
+detect_threshold: 0.2
+object_of_interest: [0]
+object_bbox_color: [1.0, 0.0, 0.0]
+object_class_label: "franka"
+detection_image_downsample_factor: 2
+pointcloud_downsample_factor: 1
+dbscan_min_points_cluster: 18
+dbscan_search_range_epsilon: 0.15
+view_angle_intervals: 8
+visible_distance: 6.0
+object_filter_height: 0.1
+object_track_thresh: 0.3
+object_merge_thresh: 0.5
+object_merge_dist: 2.0
+mask_erosion_px: 2
+mask_depth_band_m: 1.0
+object_min_voxel_num: 30
+object_min_detection_num: 2
+object_max_bottom_z: 0
+object_region_whitelist: [-2.1, -19.23, 2,  17.1, -5.28, 2,  13.1, -14.68, 2,  3.6, -4.6, 2,  17.18, -24.31, 2]
+gt_cheat_enable: true
+gt_cheat_tol: 0.15
+gt_box_rescue_xy: 1.0
+gt_cheat_dir: "/root/home/benchmark/scenes/scene_a_revise1/gt"
+gt_cheat_objects: [forklift_1, forklift_2, forklift_3, crate_1, crate_2]
+mask_max_yaw_rate: 1.4
+pano_dual_center: true
+coverage_region_min: [-5.1, -30.1, 0.1]
+coverage_region_max: [25.1, 0.1, 4.0]
+object_map_size: [6.0, 6.0, 9.0]
+local_map_size: [30, 30, 3]
+max_height_visualization: 5.0
+visualize_global_map: false

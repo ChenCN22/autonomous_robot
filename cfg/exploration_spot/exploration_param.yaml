@@ -1,0 +1,20 @@
+odom_topic: /spot/odom
+local_region_min: [-8, -8, 0.7]
+local_region_max: [8, 8, 0.7]
+global_region_min: [-5.6, -30.6, 0.55]
+global_region_max: [25.6, 0.6, 0.85]
+explore_region_size: 10.0
+sampling_safe_distance: 0.35
+candidate_sample_distance: 1.5
+max_candidate_sample_per_region: 30
+candidate_sample_trial: 11
+min_ig_thresh: 70
+min_frontier_thresh: 30
+dmax: 8.0
+tsp_solver_path: "/root/catkin_ws/src/lkh_tsp_solver/resource/"
+grid_boundary_margin: 0.5
+tsp_astar_wall_sec: 0.6
+tsp_astar_max_expansions: 1000000
+grid_node_scale: [0.3, 0.3, 0.3]
+grid_num_yaws: 4
+prune_local_graph: true

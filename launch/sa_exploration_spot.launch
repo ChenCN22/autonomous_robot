@@ -1,0 +1,15 @@
+<launch>
+	<arg name="robot_ns" default="spot" />
+	<arg name="robot_name" default="spot" />
+	<arg name="robot_id" default="1" />
+	<!-- Launch planner -->
+	<rosparam file="$(find autonomous_robot)/cfg/exploration_spot/robot_config.yaml" ns="/$(arg robot_ns)"/>
+	<rosparam file="$(find autonomous_robot)/cfg/exploration_spot/frontiers_param.yaml" ns="/$(arg robot_ns)"/>
+	<rosparam file="$(find autonomous_robot)/cfg/exploration_spot/multi_robo_occ_map_param.yaml" ns="/$(arg robot_ns)"  />
+	<rosparam file="$(find autonomous_robot)/cfg/exploration_spot/exploration_param.yaml" ns="/$(arg robot_ns)"/>
+	
+	<node pkg="autonomous_robot" type="sa_exploration_node" name="sa_exploration_node" ns="/$(arg robot_ns)" output="log"/>
+
+	<!-- Launch RViz -->
+    <!-- <node pkg="rviz" type="rviz" name="rviz" args="-d $(find autonomous_robot)/rviz/ugv_ugv_semantic.rviz" /> -->
+</launch>

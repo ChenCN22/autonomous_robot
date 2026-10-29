@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>autonomous_robot</name>
+  <version>1.0.0</version>
+  <description>Exploration state machine and Spot interface of the POSE exploration stack</description>
+  <maintainer email="xiaoyangzhan999@gmail.com">Xiaoyang Zhan</maintainer>
+  <license>MIT</license>
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>roscpp</depend>
+  <depend>std_msgs</depend>
+  <depend>nav_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>tf2</depend>
+  <depend>tf2_geometry_msgs</depend>
+  <depend>map_manager</depend>
+  <depend>frontiers_manager</depend>
+  <depend>global_planner</depend>
+  <depend>communication_manager</depend>
+</package>

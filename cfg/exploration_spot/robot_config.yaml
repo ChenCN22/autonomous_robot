@@ -1,0 +1,37 @@
+enable_husky: false
+enable_spot: true
+enable_uav: false
+robot_id: 2
+robot_type: 2
+odom_topic: /spot/odom
+cmd_topic: /spot/waypoint
+desired_velocity: 1.2
+desired_angular_velocity: 0.6
+prearm_replan_dist: 3.5
+tsp_replan_exec_dist: 5.0
+safe_dist: [0.3, 0.3, 0.0]
+range_sensor_type: "lidar"
+sample_range_min: 1.0
+sample_range_max: 6.0
+sample_height_range: [0.7, 0.7]
+sample_height_step: 0.8
+reach_goal_distance: 0.3
+recover_max_dist: 1.0
+aggressive_mode: true
+omni_direction_mode: true
+enable_6dof_posture_scan: true
+posture_scan_duration: 2.0
+posture_gain_improve_thresh: 0.15
+posture_topic: /spot/posture
+posture_sensor_settle_s: 1.0
+posture_mode: "geometric"
+posture_aim_mode: "free"
+posture_honor_predecided: false
+posture_exec_mode: "sampled"
+vlm_posture_query_topic: /spot/vlm_posture_query
+vlm_posture_response_topic: /spot/vlm_posture_response
+vlm_response_timeout: 10.0
+exploration_done_same_path_repeats: 999999
+exploration_done_coverage_plateau_s: 30.0
+exploration_done_known_frac_min: 0.9
+exploration_done_growth_frac: 0.001
