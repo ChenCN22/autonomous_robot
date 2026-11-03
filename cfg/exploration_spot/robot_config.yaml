@@ -2,7 +2,6 @@ enable_husky: false
 enable_spot: true
 enable_uav: false
 robot_id: 2
-robot_type: 2
 odom_topic: /spot/odom
 cmd_topic: /spot/waypoint
 desired_velocity: 1.2

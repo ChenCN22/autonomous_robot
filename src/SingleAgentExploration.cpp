@@ -29,7 +29,6 @@ namespace autonomous_robot {
 		this->nh_.param("posture_sensor_settle_s", this->postureSensorSettle_, 0.0);
 		this->nh_.param("posture_gain_improve_thresh", this->postureGainImproveThresh_, 0.15);
 		this->nh_.param("posture_topic", this->postureTopic_, std::string("/spot/posture"));
-		this->nh_.param("robot_type", this->robotTypeParam_, 0);
 		this->nh_.param("posture_mode", this->postureMode_, std::string("geometric"));
 		this->nh_.param("posture_aim_mode", this->postureAimMode_, std::string("free"));
 		this->nh_.param("posture_exec_mode", this->postureExecMode_, std::string("resweep"));
@@ -73,7 +72,6 @@ namespace autonomous_robot {
 		this->map_ = std::make_shared<mapManager::occMap>(this->nh_);
 		this->ftManager_ = std::make_shared<frontiersManager::ftManager>(this->nh_);
 		this->ftManager_->setMap(this->map_);
-		this->ftManager_->setRobotConfigs(robotConfigs);
 
 		this->explorationReplan_ = true;
 		this->explorer_ = std::make_shared<globalPlanner::DEP>(this->nh_);
@@ -539,7 +537,7 @@ namespace autonomous_robot {
 			} else {
 				double predPitch = bestPitch;
 				double cmdRoll = 0.0, cmdPitch = 0.0, cmdYaw = curYaw;
-				this->ftManager_->aimPredecidedPosture(this->robotTypeParam_, currPos, curYaw, vpObjectId, vpYaw, predPitch, cmdRoll, cmdPitch, cmdYaw);
+				this->ftManager_->aimPredecidedPosture(currPos, curYaw, vpObjectId, vpYaw, predPitch, cmdRoll, cmdPitch, cmdYaw);
 				doPosture = true;
 				bestRoll = cmdRoll;
 				bestPitch = cmdPitch;
@@ -553,7 +551,7 @@ namespace autonomous_robot {
 				ROS_WARN("[saExploration]: aim mode=free/sampled @ (%.2f, %.2f): sampled posture is flat, posture skipped", vpPos(0), vpPos(1));
 			} else {
 				double cmdRoll = 0.0, cmdPitch = 0.0, cmdYaw = curYaw;
-				this->ftManager_->aimSampledPosture(this->robotTypeParam_, currPos, curYaw, vpObjectId, vpYaw, bestRoll, bestPitch, cmdRoll, cmdPitch, cmdYaw);
+				this->ftManager_->aimSampledPosture(currPos, curYaw, vpObjectId, vpYaw, bestRoll, bestPitch, cmdRoll, cmdPitch, cmdYaw);
 				doPosture = true;
 				ROS_WARN("[saExploration]: aim mode=free/sampled @ (%.2f, %.2f): beta=%.0f dYaw=%.0f deg, sampled (%.1f, %.1f) -> exec roll/pitch = (%.1f, %.1f) deg",
 				         vpPos(0), vpPos(1), wrapAngle(vpYaw - curYaw) * 180.0 / M_PI, wrapAngle(cmdYaw - curYaw) * 180.0 / M_PI,
@@ -566,7 +564,7 @@ namespace autonomous_robot {
 			// re-optimise the gain at the arrival heading; minimal yaw only when the aim envelope cannot reach the object
 			int aimGain = -1, aimFlat = -1;
 			double cmdRoll = 0.0, cmdPitch = 0.0, cmdYaw = curYaw;
-			if (this->ftManager_->selectAimPosture(this->robotTypeParam_, currPos, curYaw, vpObjectId, vpYaw, cmdRoll, cmdPitch, cmdYaw, aimGain, aimFlat)) {
+			if (this->ftManager_->selectAimPosture(currPos, curYaw, vpObjectId, vpYaw, cmdRoll, cmdPitch, cmdYaw, aimGain, aimFlat)) {
 				doPosture = aimGain > aimFlat;
 				bestRoll = cmdRoll;
 				bestPitch = cmdPitch;
@@ -577,7 +575,7 @@ namespace autonomous_robot {
 			} else {
 				// object box unresolved: global sweep at the current heading
 				int bestGain = -1, flatGain = -1;
-				doPosture = this->ftManager_->findBestPosture(this->robotTypeParam_, currPos, curYaw, bestRoll, bestPitch, bestGain, flatGain) and
+				doPosture = this->ftManager_->findBestPosture(currPos, curYaw, bestRoll, bestPitch, bestGain, flatGain) and
 				            flatGain >= 0 and bestGain > flatGain * (1.0 + this->postureGainImproveThresh_);
 				postureYaw = curYaw;
 				if (doPosture) {
@@ -593,7 +591,7 @@ namespace autonomous_robot {
 		} else {
 			// arrival-time sweep on the global unknown gain
 			int bestGain = -1, flatGain = -1;
-			doPosture = this->ftManager_->findBestPosture(this->robotTypeParam_, currPos, vpYaw, bestRoll, bestPitch, bestGain, flatGain) and
+			doPosture = this->ftManager_->findBestPosture(currPos, vpYaw, bestRoll, bestPitch, bestGain, flatGain) and
 			            flatGain >= 0 and bestGain > flatGain * (1.0 + this->postureGainImproveThresh_);
 			if (doPosture) {
 				ROS_WARN("[saExploration]: posture scan @ (%.2f, %.2f): roll/pitch = (%.1f, %.1f) deg, gain %d vs flat %d, dwell %.1f s",

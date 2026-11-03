@@ -49,7 +49,6 @@ namespace autonomous_robot {
 		double postureSensorSettle_ = 0.0;   // sensor settle hold after the tilt ramp (s)
 		double postureGainImproveThresh_ = 0.15;  // min relative gain over flat to tilt
 		std::string postureTopic_ = "/spot/posture";
-		int robotTypeParam_ = 0;             // sensor-model key in the frontier manager
 		std::string postureMode_ = "geometric";   // "geometric" | "vlm" (external posture server, geometric fallback)
 		std::string postureAimMode_ = "free";     // "free": keep arrival heading, aim with roll/pitch | "face": turn to the object
 		std::string postureExecMode_ = "resweep"; // free aim: "sampled" executes the sampled posture, "resweep" re-optimises on arrival

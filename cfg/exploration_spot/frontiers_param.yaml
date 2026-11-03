@@ -4,7 +4,6 @@ down_sample: 3
 sample_dist_min: 3.0
 sample_dist_max: 5.0
 sample_res: 1.0
-sample_height: 0.7
 posture_roll_list: [-20.0, 0.0, 20.0]
 posture_pitch_list: [-30.0, -15.0, 15.0, 30.0]
 posture_pitch_limit_deg: 30.0
