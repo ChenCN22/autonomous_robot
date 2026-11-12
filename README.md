@@ -5,7 +5,7 @@ Crowded Unknown Environments*) for a Boston Dynamics Spot. The node owns the map
 frontier / object-viewpoint (`frontiers_manager`) and tour-planning (`global_planner`) modules, executes the
 planned waypoints, triggers the 5-DoF posture at object viewpoints and decides when exploration ends.
 
-## Components
+## Components 
 
 | Class | File | Role |
 |---|---|---|
